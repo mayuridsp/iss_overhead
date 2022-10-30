@@ -42,7 +42,6 @@ def is_night():
 while True:
     time.sleep(60)
     if is_iss_overhead() and is_night():
-        print("yes")
         connection = smtplib.SMTP("smtp.mail.yahoo.com")
         connection.starttls()
         connection.login(MY_EMAIL, MY_PASSWORD)
@@ -51,4 +50,11 @@ while True:
             to_addrs="maydsp1993@gmail.com",
             msg=f"Subject:Look up!\n\nLook up, the ISS is above you in the sky."
         )
-    print("no")
+    connection = smtplib.SMTP("smtp.mail.yahoo.com")
+    connection.starttls()
+    connection.login(MY_EMAIL, MY_PASSWORD)
+    connection.sendmail(
+        from_addr=MY_EMAIL,
+        to_addrs="maydsp1993@gmail.com",
+        msg=f"Subject:No luck...\n\nThe ISS is not over your head."
+    )
