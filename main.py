@@ -7,8 +7,9 @@ import os
 MY_EMAIL = os.getenv('MY_EMAIL')
 MY_PASSWORD = os.environ.get('MY_PASSWORD')
 
-MY_LAT = 41.232861
-MY_LONG = -8.621570
+MY_LAT = float(input("What's your latitude?\nE.g.: 41.232861\n"))
+MY_LONG = float(input("What's your longitude?\nE.g.: -8.621570\n"))
+EMAIL_ADDRESS = input("What's your e-mail address?\n E.g.: maydsp1993@gmail.com\n")
 
 
 def is_iss_overhead():
@@ -47,7 +48,7 @@ while True:
         connection.login(MY_EMAIL, MY_PASSWORD)
         connection.sendmail(
             from_addr=MY_EMAIL,
-            to_addrs="maydsp1993@gmail.com",
+            to_addrs=EMAIL_ADDRESS,
             msg=f"Subject:Look up!\n\nLook up, the ISS is above you in the sky."
         )
     connection = smtplib.SMTP("smtp.mail.yahoo.com")
@@ -55,6 +56,6 @@ while True:
     connection.login(MY_EMAIL, MY_PASSWORD)
     connection.sendmail(
         from_addr=MY_EMAIL,
-        to_addrs="maydsp1993@gmail.com",
+        to_addrs=EMAIL_ADDRESS,
         msg=f"Subject:No luck...\n\nThe ISS is not over your head."
     )
